@@ -1,5 +1,5 @@
 {
-  "name": "Horse_BDO",
+  "name": "reserve",
   "version": "0.1.0",
   "main": "index.js",
   "scripts": {
@@ -18,5 +18,13 @@
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5"
   },
-  "description": ""
+  "description": "\"# reserve\" \r \"# reserve\"",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yudawind/reserve.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yudawind/reserve/issues"
+  },
+  "homepage": "https://github.com/yudawind/reserve#readme"
 }

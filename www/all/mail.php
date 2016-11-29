@@ -6,7 +6,7 @@ if ($_POST['contact_f']) {
         message('количество символов не соответствует: от 10 до 250 символов');
 
     mail('admin@itaw.org',
-        'Обращение с сайта HORSE',
+        'Обращение с сайта SHOOTERS - Reserve',
         '<p>'.htmlspecialchars($_POST['message']).'</p>',
         'Content-type: text/html; charset=UTF-8
 MIME-Version: 1.0

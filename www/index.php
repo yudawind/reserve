@@ -57,9 +57,9 @@ function not_found() {
 function captcha_show() {
 
 	$questions = array(
-		1 => 'Столица России ?',
-		2 => 'Столица Украины ?',
-        3 => 'Столица Белоруссии ?',
+		1 => '2+9= ?',
+		2 => '13-4= ?',
+        3 => '2*2= ?',
 		);
 
 	$num = mt_rand(1, count($questions) );
@@ -72,9 +72,9 @@ function captcha_show() {
 function captcha_valid() {
 
 	$answers = array(
-		1 => 'москва',
-		2 => 'киев',
-        3 => 'минск',
+		1 => '11',
+		2 => '9',
+        3 => '4',
 		);
 $otvet = array_search($_POST['captcha'],$answers);
     $lowerotvet = strtolower($_POST['captcha']);
@@ -99,7 +99,7 @@ function top( $title,$dopmenu = '' ) {
     if ( $_SESSION['id']) {
         $avmenu = '
 <a href="/profile">Профайл</a>
-<a href="/history">История</a>'.$dopmenu.'
+<a href="/tables">Столики</a>'.$dopmenu.'
 <hr><a href="/logout"><b>Выход</b></a>';
     } else $avmenu = '<a href="/login">Вход</a><a href="/register">Регистрация</a>';
 

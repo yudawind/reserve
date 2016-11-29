@@ -7,7 +7,7 @@ if ($_POST['login_f']) {
     password_valid();
 
     if (mysqli_num_rows(mysqli_query($CONNECT, "SELECT `id` FROM `users` WHERE `email` = '$_POST[email]' AND `password` = '$_POST[password]'")))
-        message('Аккаунт не найден');
+        message('Аккаунт не найден '.$_POST['email'].' - '.$_POST['password']);
 
     $row = mysqli_fetch_assoc(mysqli_query($CONNECT, "SELECT * FROM `users` WHERE `email` = '$_POST[email]'"));
 
@@ -45,7 +45,10 @@ if ($_POST['login_f']) {
         'code' => $code,
     );
 
-    mail($_POST['email'], 'Регистрация', "Код подтверждения регистрации: <b>$code</b>");
+    mail($_POST['email'], 'Регистрация', "Код подтверждения регистрации: <b>$code</b>",
+        'Content-type: text/html; charset=UTF-8
+MIME-Version: 1.0
+From: '.$_POST['email']);
 
 
     go('confirm');
@@ -66,7 +69,10 @@ if ($_POST['login_f']) {
         'code' => $code,
     );
 
-    mail($_POST['email'], 'Восстановление пароля', "Код подтверждения восстановление пароля: <b>$code</b>");
+    mail($_POST['email'], 'Восстановление пароля', "Код подтверждения восстановление пароля: <b>$code</b>",
+        'Content-type: text/html; charset=UTF-8
+MIME-Version: 1.0
+From: '.$_POST['email']);
 
     go('confirm');
 
