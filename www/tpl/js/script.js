@@ -1,4 +1,23 @@
-
+function load_disko() {
+    $.get('/disko', function (data) {
+        // console.log(data);
+        if (data == 'empty')
+            $('#space').text('История пуста');
+        else if (data != 'end')
+            $('#space').html(data);
+    });
+    // $('#space').html(result);
+}
+function load_bar22() {
+    $.get('/bar22', function (data) {
+        // console.log(data);
+        if (data == 'empty')
+            $('#space').text('История пуста');
+        else if (data != 'end')
+            $('#space').html(data);
+    });
+    // $('#space').html(result);
+}
 function post_query(url, name, data) {
 
     var str = '';

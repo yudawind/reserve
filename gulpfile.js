@@ -24,10 +24,10 @@ gulp.task('css', function () {
         .pipe(rename('style.css'))
         .pipe(gulp.dest('www/tpl/css'))
         .pipe(ftp({
-            host: 'artweapo.ftp.ukraine.com.ua',
-            user: 'artweapo_ftp',
-            pass: 'jiUwUjoRjNEEHyA7',
-            remotePath: '/itaw.org/horse/tpl/css/'
+            host: 'ef978.mirohost.net',
+            user: 'shooters',
+            pass: 'F39QcXidjQxmuChy',
+            remotePath: '/reserve.shooters.kiev.ua/tpl/css/'
         }))
         .on('error', gutil.log);
 
@@ -36,10 +36,10 @@ gulp.task('css', function () {
 gulp.task('ftpupl', function () {
     return gulp.src('css/template.css')
         .pipe(ftp({
-            host: 'artweapo.ftp.ukraine.com.ua',
-            user: 'artweapo_ftp',
-            pass: 'jiUwUjoRjNEEHyA7',
-            remotePath: '/itaw.org/horse/tpl/css/'
+            host: 'ef978.mirohost.net',
+            user: 'shooters',
+            pass: 'F39QcXidjQxmuChy',
+            remotePath: '/reserve.shooters.kiev.ua/tpl/css/'
         }));
 });
 

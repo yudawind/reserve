@@ -3,16 +3,15 @@ $_SESSION['loader'] = 0;
 
 top('Столики') ?>
 
-    <h1>Столики</h1>
+    <span>Столики: </span>
 
-    <p>Привет <?=$_SESSION['email']?></p>
 
+<button onclick="load_disko()">Дискотека</button> <button onclick="load_bar22()">Bar-22</button>
+<div id="space">
     <script>
-
-//        $(document).ready(function () {
-//            load_history()
-//        })
+        $(document).ready(function () {
+            load_disko()
+        })
     </script>
-<!--<button onclick="load_history()">Загрузить</button>-->
-<div id="space"></div>
+</div>
 <? bottom() ?>

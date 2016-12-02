@@ -6,7 +6,9 @@ if ($_POST['login_f']) {
     email_valid();
     password_valid();
 
-    if (mysqli_num_rows(mysqli_query($CONNECT, "SELECT `id` FROM `users` WHERE `email` = '$_POST[email]' AND `password` = '$_POST[password]'")))
+//    message($_POST['email'].' - '.$_POST['password']);
+
+    if (!mysqli_num_rows(mysqli_query($CONNECT, "SELECT `id` FROM `users` WHERE `email` = '$_POST[email]' AND `password` = '$_POST[password]'")))
         message('Аккаунт не найден '.$_POST['email'].' - '.$_POST['password']);
 
     $row = mysqli_fetch_assoc(mysqli_query($CONNECT, "SELECT * FROM `users` WHERE `email` = '$_POST[email]'"));
