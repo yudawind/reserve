@@ -1,6 +1,9 @@
-function load_disko() {
-    $.get('/disko', function (data) {
-        // console.log(data);
+zal='zal';
+stol='stol';
+function load_reserv(zal,stol) {
+
+    $.get('/reserv/'+zal+'/'+stol, function (data) {
+        console.log('/reserv/'+zal+'/'+stol);
         if (data == 'empty')
             $('#space').text('История пуста');
         else if (data != 'end')
@@ -8,11 +11,11 @@ function load_disko() {
     });
     // $('#space').html(result);
 }
-function load_bar22() {
-    $.get('/bar22', function (data) {
+function load_zal(p) {
+    $.get('/'+p, function (data) {
         // console.log(data);
         if (data == 'empty')
-            $('#space').text('История пуста');
+            $('#space').text('Такого зала нет');
         else if (data != 'end')
             $('#space').html(data);
     });

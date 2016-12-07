@@ -110,10 +110,11 @@ echo '<!DOCTYPE html>
 <title>'.$title.'</title>
 <link rel="stylesheet" href="/tpl/css/style.css">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-<script
+<!--<script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous"></script>-->
+  <script src="/tpl/js/jquery.min.js" rel="script"></script>
 
 </head>
 

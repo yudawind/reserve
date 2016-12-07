@@ -26,8 +26,9 @@ button {
   background: #34C0E2;
   color: #fff;
   border: 1px solid #34C0E2;
-  padding: 8px;
-  border-radius: 8px;
+  padding: 4px 12px;
+  margin: 8px 4px;
+  //border-radius: 8px;
   &:hover {
     cursor:pointer;
     opacity: 0.8;
@@ -95,74 +96,23 @@ html, body {
   padding: 10px 25px;
   text-transform: uppercase;
 }
-.adbreed {
-  p {
-    display: inline-block;
-    margin: 3px 0;
-  }
-  input, input[type=password], input[type=text],select {
-    max-width: 90px;
-    padding: 4px 8px;
-    border: 1px solid #eeeff2;
-    border-radius: 4px;
-    color: #adb6ba;
-    outline: none;
-  }
-  label {
-    font-size: 12px;
-    color: #aaa;
-    text-align: left;
-    input {
-      width: 20px;
-
-    }
-  }
+#spis_rez {
+  margin: 8px;
+  padding: 8px;
+  border: 1px solid #eeeff2;
+  height: 200px;
 }
-.swbreed {
-  >table {
-    border-spacing: 0;
-    >tbody>tr:nth-child(2n) {
-      background-color: #eee;
-    }
-  }
-  td,th {
-    padding: 2px;
-    text-align: center;
-  }
+.rowflex {
+  display: flex;
 }
-#moikoni {
-  .odlosh {
-    position: relative;
-    display: inline-block;
-    padding: 8px;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    margin: 8px 8px 0px 0;
-    font-size: 12px;
-    background: #eee;
-    a,a:visited {
-      color: gray;
-    }
-    .rod {
-      position: relative;
-      img {
-        width: 70px;
-      }
-      .sex {
-        position: absolute;
-        right: 4px;
-        top: 4px;
-        width: 14px;
-        img {
-        width: 14px;
-      }
-      }
-    }
-    .sex {
-      position: absolute;
-      right: 8px;
-      top: 8px;
-      width: 14px;
-    }
-  }
+.w70 {
+  max-width: 70%;
+  padding: 0;
+}
+.w30 {
+  max-width: 30%;
+  padding: 0;
+}
+.h30 {
+  display: block;height: 30px;
 }
