@@ -1,6 +1,6 @@
 <?
 
-if ( $_SERVER['REQUEST_URI'] == '/' ) $page = 'home';
+if ( $_SERVER['REQUEST_URI'] == '/' ) $page = 'login';
 else {
 
 	$page = substr($_SERVER['REQUEST_URI'], 1);
@@ -110,11 +110,12 @@ echo '<!DOCTYPE html>
 <title>'.$title.'</title>
 <link rel="stylesheet" href="/tpl/css/style.css">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-<!--<script
+
+<script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>-->
-  <script src="/tpl/js/jquery.min.js" rel="script"></script>
+  crossorigin="anonymous"></script>
+<!--<script src="/tpl/js/jquery.min.js" rel="script"></script> jq -->
 
 </head>
 

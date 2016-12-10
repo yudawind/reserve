@@ -3,7 +3,7 @@ $_SESSION['loader'] = 0;
 
 top('Столики') ?>
 
-    <span>Столики: </span>
+    <span>Залы: </span>
 
     <button onclick="load_zal('disko')">Дискотека</button>
     <button onclick="load_zal('bar22')">Bar-22</button>
