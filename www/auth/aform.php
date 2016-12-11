@@ -4,7 +4,7 @@ if ($_POST['edit_f']) {
 
     if ($_POST['password'] and md5($_POST['password']) != $_SESSION['password']) {
         password_valid();
-        mysqli_query($CONNECT, "UPDATE `users` SET `password` = '$_POST[password]'");
+        mysqli_query($CONNECT, "UPDATE `users` SET `password` = '$_POST[password]' WHERE `id` = '$_SESSION[id]'");
 
     }
     if ($_POST['ip'] != $_SESSION['ip']) {
@@ -16,7 +16,11 @@ if ($_POST['edit_f']) {
             }
             $_SESSION['ip'] = $_POST['ip'];
         } else $_SESSION['ip'] = '';
-        mysqli_query($CONNECT, "UPDATE `users` SET `ip` = '$_SESSION[ip]'");
+        mysqli_query($CONNECT, "UPDATE `users` SET `ip` = '$_SESSION[ip]' WHERE `id` = '$_SESSION[id]'");
+
+    }
+    if ($_POST['name'] != $_SESSION['name']) {
+        mysqli_query($CONNECT, "UPDATE `users` SET `name` = '$_POST[name]' WHERE `id` = '$_SESSION[id]'");
 
     }
 

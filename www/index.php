@@ -1,6 +1,6 @@
 <?
 
-if ( $_SERVER['REQUEST_URI'] == '/' ) $page = 'login';
+if ( $_SERVER['REQUEST_URI'] == '/' ) $page = 'home';
 else {
 
 	$page = substr($_SERVER['REQUEST_URI'], 1);
@@ -96,10 +96,13 @@ function password_valid() {
 
 function top( $title,$dopmenu = '' ) {
 
-    if ( $_SESSION['id']) {
+    if ( $_SESSION['id'] && $_SESSION['group']==1) {
         $avmenu = '
 <a href="/profile">Профайл</a>
 <a href="/tables">Столики</a>'.$dopmenu.'
+<hr><a href="/logout"><b>Выход</b></a>';
+    } elseif ($_SESSION['id'] && $_SESSION['group']!=1){
+        $avmenu = '<a href="/tables">Столики</a>
 <hr><a href="/logout"><b>Выход</b></a>';
     } else $avmenu = '<a href="/login">Вход</a><a href="/register">Регистрация</a>';
 
@@ -126,7 +129,6 @@ echo '<!DOCTYPE html>
 
 <div class="menu">
 <a href="/">Главная</a>
-<a href="/contact">Обратная связь</a>
 '.$avmenu.'
 
 </div>

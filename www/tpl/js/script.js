@@ -1,5 +1,5 @@
-zal='zal';
-stol='stol';
+// zal='zal';
+// stol='stol';
 function load_reserv(zal,stol) {
 
     $.get('/reserv/'+zal+'/'+stol, function (data) {
@@ -28,6 +28,7 @@ function post_query(url, name, data) {
     $.each(data.split('.'), function (k, v) {
         str += '&' + v + '=' + $('#' + v).val();
     });
+    console.log(str);
     $.ajax(
         {
             url: '/' + url,

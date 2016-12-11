@@ -22,14 +22,14 @@ h1 {
   font-size: 20px;
 
 }
-
-button {
+button, input[type="reset"] {
   background: #333333;
   color: #fff;
   border: 1px solid #333333;
   padding: 6px 12px;
   margin: 8px 4px;
-  //border-radius: 8px;
+  border-radius: 0;
+  width: auto;
   &:hover {
     cursor:pointer;
     opacity: 0.8;
@@ -44,15 +44,23 @@ button {
 .fright {
   float: right;
 }
+.head_loc {
+  width: 110px;
+  float: left;
+}
+.rowflex {
+  clear: both;
+}
 input[type=text],
 input,
 input[type=password],
 textarea {
   padding: 8px;
-  border: 1px solid #EEEFF2;
+  border: 1px solid #888888;
   border-radius: 8px;
-  color: #ADB6BA;
-  width: 300px;
+  color: #444444;
+  width: 100%;
+  //width: 300px;
   outline: none;
 
 }
@@ -85,7 +93,7 @@ html, body {
 #spis_rez {
   margin: 8px;
   padding: 8px;
-  border: 1px solid #eeeff2;
+  border: 1px solid #888888;
   height: 200px;
 }
 .rowflex {
@@ -94,10 +102,19 @@ html, body {
 .w70 {
   max-width: 70%;
   padding: 0;
+  button {
+    width: 45%;
+  }
 }
 .w30 {
   max-width: 30%;
   padding: 0;
+  p {
+    margin: 0 0 4px;
+    color: #999;
+    font-size: 12px;
+    font-weight: bold;
+  }
 }
 .h30 {
   display: block;height: 30px;
