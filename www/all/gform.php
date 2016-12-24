@@ -25,12 +25,12 @@ if ($_POST['login_f']) {
     foreach ($row as $key => $value)
         $_SESSION[$key] = $value;
 
-    go('tables');
+    go('home');
 
 
 
 } else if ($_POST['register_f']) {
-    captcha_valid();
+//    captcha_valid();
     email_valid();
     password_valid();
 
@@ -38,6 +38,8 @@ if ($_POST['login_f']) {
     if (mysqli_num_rows(mysqli_query($CONNECT, "SELECT `id` FROM `users` WHERE `email` = '$_POST[email]'")))
         message('Этот E-mail занят');
 
+    mysqli_query($CONNECT, 'INSERT INTO `users` VALUES ("", "' . $_POST['name'] . '", "' . $_POST['email'] . '", "' . $_POST['password'] . '", "", "")');
+    go('home');
 
     $code = random_str(5);
 
@@ -81,6 +83,8 @@ From: '.$_POST['email']);
 
 
 } else if ($_POST['confirm_f']) {
+
+    message("здесь");
 
     if ($_SESSION['confirm']['type'] == 'register') {
 

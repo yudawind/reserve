@@ -1,5 +1,51 @@
+<?
+$_SESSION['loader'] = 0;
+
+$data = array_shift($URL_Parts);
+if (!$data) $data = date('Y-m-d');
+
+$rezsql = "SELECT * FROM `reserve` WHERE `zal` = 'shooters' AND `data` = '" . $data . "' ORDER BY `time`";
+
+$res = mysqli_query($CONNECT, $rezsql);
+$tx = 53;
+$ty = 142;
+while ($row = mysqli_fetch_assoc($res)) {
+    if ($row['stol'] == 21) {
+        $row['time'] = substr($row['time'], 0, 5);
+        if ($row['data'] < date('Y-m-d')) $trstyle = 'old';
+        elseif ($row['data'] == date('Y-m-d')) $trstyle = 'norm';
+        else $trstyle = 'new';
+        $ty += 6;
+        $scgtext .= '<text id="ts21" x="' . $tx . '" y="' . $ty . '" class="' . $trstyle . ' s' . $row['cond'] . '">';
+        $scgtext .= '<tspan class="name">' . $row['name'] . ' </tspan>';
+        $scgtext .= '<tspan>' . $row['time'] . '</tspan>';
+        $scgtext .= '</text>';
+    }
+}
+
+
+top('Бар 22') ?>
+
+<!--    <span>Залы: </span>-->
+<div class="fleft">
+    <script>
+        $(document).ready(function () {
+        });
+    </script>
+    <label for="data"></label>
+    <input value="<? echo $data ?>" type="date" id="data" name="data"/>
+</div>
+<div class="fright">
+    <a class="btn" href="disko">Шутерс</a>
+    <a class="btn active" href="bar22">Бар 22</a>
+    <a class="btn" href="karaoke">Лимончелло</a>
+    <a class="btn" href="terassa">Терасса</a>
+</div>
+
+<div id="space">
+
 <div class="plan">
-    <svg version="1.1" id="sloy_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    <svg version="1.1" id="bar22" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
          viewBox="0 0 738.7 841.9" style="enable-background:new 0 0 738.7 841.9;" xml:space="preserve">
         <rect x="453" y="659" class="st0" width="30" height="94"></rect>
         <rect x="523.2" y="401.5" class="st0" width="51.7" height="49.9"></rect>
@@ -23,18 +69,19 @@
         <rect x="250.3" y="16" class="ex0" width="139.2" height="40.8"></rect>
         <rect x="523.9" y="479" class="st0" width="50.1" height="50.8"></rect>
         <text transform="matrix(1 0 0 1 294.0826 720.842)" class="tx1">сцена</text>
-        <text transform="matrix(7.730000e-003 -1 1 7.730000e-003 145 529.7384)" class="tx1">барная стойка</text>
-        <text transform="matrix(7.730000e-003 -1 1 7.730000e-003 466.3539 173.7539)" class="tx1">барная стойка</text>
+        <text transform="matrix(7.730000e-003 -1 1 7.730000e-003 145 529)" class="tx1">барная стойка</text>
+        <text transform="matrix(7.730000e-003 -1 1 7.730000e-003 466 173)" class="tx1">барная стойка</text>
         <text transform="matrix(7.730000e-003 -1 1 7.730000e-003 472 740)" class="tx1">пианино</text>
-        <text transform="matrix(1 0 0 1 538.006 434.0345)" class="tx1">21</text>
-        <text transform="matrix(1 0 0 1 537.6692 378.4105)" class="tx1">22</text>
-        <text transform="matrix(1 0 0 1 593.2744 377.7288)" class="tx1">23</text>
-        <text transform="matrix(1 0 0 1 647.3376 374.3476)" class="tx1">24</text>
-        <text transform="matrix(1 0 0 1 650.8364 509.5441)" class="tx1">25</text>
-        <text transform="matrix(1 0 0 1 541.34 509.5441)" class="tx1">26</text>
-        <text transform="matrix(1 0 0 1 647.3368 591.3354)" class="tx1">27</text>
-        <text transform="matrix(1 0 0 1 647.3376 659.6688)" class="tx1">28</text>
-        <text transform="matrix(1 0 0 1 538.0062 659.9671)" class="tx1">29</text>
-        <text transform="matrix(1 0 0 1 538.0056 602.4671)" class="tx1">30</text>
+        <text transform="matrix(1 0 0 1 538 434)" class="tx1">21</text>
+        <text transform="matrix(1 0 0 1 537 378)" class="tx1">22</text>
+        <text transform="matrix(1 0 0 1 593 377)" class="tx1">23</text>
+        <text transform="matrix(1 0 0 1 647 374)" class="tx1">24</text>
+        <text transform="matrix(1 0 0 1 650 509)" class="tx1">25</text>
+        <text transform="matrix(1 0 0 1 541 509)" class="tx1">26</text>
+        <text transform="matrix(1 0 0 1 647 591)" class="tx1">27</text>
+        <text transform="matrix(1 0 0 1 647 659)" class="tx1">28</text>
+        <text transform="matrix(1 0 0 1 538 659)" class="tx1">29</text>
+        <text transform="matrix(1 0 0 1 538 602)" class="tx1">30</text>
     </svg>
 </div>
+<? bottom() ?>

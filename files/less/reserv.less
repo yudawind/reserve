@@ -1,0 +1,47 @@
+#spis_rez {
+  margin: 8px;
+  border: 1px solid #888888;
+  min-height: 200px;
+  table {
+    font-size: 12px;
+    border-collapse: collapse; /*убираем пустые промежутки между ячейками*/
+    //border: 1px solid grey;
+    width: 100%;
+    tr {
+      border-bottom: solid gray 1px;
+      &.old {
+        background: rgba(0,0,0,.1);
+      }
+      &.norm {
+        background: rgba(0,128,0,.1);
+      }
+      &.new {
+        background: rgba(0,0,128,.1);
+      }
+      td {
+        padding: 8px;
+      }
+    }
+  }
+}
+text {
+  font-size: 6px;
+  //fill: white;
+  &.old {
+    fill: rgba(50,50,50,1);
+  }
+  &.norm {
+    fill: rgba(0,180,0,1);
+  }
+  &.new {
+    fill: rgba(0,0,255,1);
+  }
+  tspan {
+    //fill: #000;
+    width: 0;
+    &.name {
+      width: auto;
+    }
+
+  }
+}

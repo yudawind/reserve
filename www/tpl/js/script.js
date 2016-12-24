@@ -1,5 +1,6 @@
 // zal='zal';
 // stol='stol';
+
 function load_reserv(zal,stol) {
 
     $.get('/reserv/'+zal+'/'+stol, function (data) {
@@ -11,14 +12,25 @@ function load_reserv(zal,stol) {
     });
     // $('#space').html(result);
 }
-function load_zal(p) {
-    $.get('/'+p, function (data) {
-        // console.log(data);
-        if (data == 'empty')
-            $('#space').text('Такого зала нет');
-        else if (data != 'end')
-            $('#space').html(data);
-    });
+function load_zal(zal, date) {
+    if (date) {
+        $.get('/'+zal+'/'+date, function (data) {
+            // console.log(data);
+            if (data == 'empty')
+                $('#space').text('Такого зала нет');
+            else if (data != 'end')
+                $('#space').html(data);
+        });
+    } else {
+        $.get('/'+zal, function (data) {
+            // console.log(data);
+            if (data == 'empty')
+                $('#space').text('Такого зала нет');
+            else if (data != 'end')
+                $('#space').html(data);
+        });
+    }
+
     // $('#space').html(result);
 }
 function post_query(url, name, data) {
@@ -144,5 +156,61 @@ function post_stable(url, name, data) {
 function go(url) {
     window.location.href = '/' + url;
 }
+function pokras () {
+    for (k=1;k<74;k++) {
+        c=$('#ts'+k);
+        console.log(c);
+        if (c) {
+            b=c.attr('class');
+            $('#rz'+k).addClass(b);
+        }
+    }
+}
+function godate() {
+    date = $('#data').val();
+    if ($('#disko')) pzal='disko/'+date;
+    else if ($('#bar22')) pzal='bar22/'+date;
+    else if ($('#karaoke')) pzal='karaoke/'+date;
+    else pzal='terassa/'+date;
+    go(pzal);
+}
 
+$(document).ready(function() {
+
+    // $('#data').change(function(event) {
+    //     date = $('#data').val();
+    //     if ($('#disko')) load_zal('disko',date);
+    //     else if ($('#bar22')) load_zal('bar22',date);
+    //     else if ($('#karaoke')) load_zal('karaoke',date);
+    //     else load_zal('terassa',date);
+    //     pokras ();
+    // });
+
+    $('#data').change(function(event) {
+        date = $('#data').val();
+        if ($('#disko')) pzal='disko/'+date;
+        else if ($('#bar22')) pzal='bar22/'+date;
+        else if ($('#karaoke')) pzal='karaoke/'+date;
+        else pzal='terassa/'+date;
+        $('#data').keypress(
+            function(event) {
+                if(event.keyCode==13){
+                    go(pzal);
+                }
+            }
+        );
+        // go(pzal);
+        // pokras ();
+    });
+
+    $(document).keypress(function(event) {
+        if(event.keyCode==13){
+            $(event.target).parent().next().find('label').focus();
+            event.preventDefault();
+        }
+    });
+
+    pokras ();
+
+});
 

@@ -89,8 +89,8 @@ function email_valid() {
 }
 
 function password_valid() {
-	if ( !preg_match('/^[A-z0-9]{8,32}$/', $_POST['password']) )
-		message('Пароль указан неверно и может содеражть 8 - 32 символов A-z0-9');
+	if ( !preg_match('/^[A-z0-9]{1,32}$/', $_POST['password']) )
+		message('Пароль указан неверно и может содеражть 1 - 32 символов A-z0-9');
 	$_POST['password'] = md5($_POST['password']);
 }
 
@@ -98,13 +98,47 @@ function top( $title,$dopmenu = '' ) {
 
     if ( $_SESSION['id'] && $_SESSION['group']==1) {
         $avmenu = '
-<a href="/profile">Профайл</a>
-<a href="/tables">Столики</a>'.$dopmenu.'
-<hr><a href="/logout"><b>Выход</b></a>';
+<a href="/">Главная</a>
+<a href="/profile">Профайл</a>'.$dopmenu.'
+<a href="/register">Регистрация</a>
+<hr><a href="/logout"><b>Выход</b></a>
+<hr>
+<div class="left">
+        <a class="btn" href="disko">Шутерс</a>
+        <a class="btn" href="bar22">Бар 22</a>
+        <a class="btn" href="karaoke">Лимончелло</a>
+        <a class="btn" href="terassa">Терасса</a>
+    </div>
+    <hr>
+    <div class="inf">
+    <span>Свободен</span>
+    <span class="yellow">Резерв</span>
+    <span class="red">Занят</span>
+    <span class="green">Занят + Резерв</span>
+</div>
+';
     } elseif ($_SESSION['id'] && $_SESSION['group']!=1){
-        $avmenu = '<a href="/tables">Столики</a>
-<hr><a href="/logout"><b>Выход</b></a>';
-    } else $avmenu = '<a href="/login">Вход</a><a href="/register">Регистрация</a>';
+        $avmenu = '<a href="/">Главная</a>
+<hr><a href="/logout"><b>Выход</b></a>
+<hr>
+<div class="left">
+        <a class="btn" href="disko">Шутерс</a>
+        <a class="btn" href="bar22">Бар 22</a>
+        <a class="btn" href="karaoke">Лимончелло</a>
+        <a class="btn" href="terassa">Терасса</a>
+    </div>
+    <hr>
+    <div class="inf">
+    <span>Свободен</span>
+    <span class="yellow">Резерв</span>
+    <span class="red">Занят</span>
+    <span class="green">Занят + Резерв</span>
+</div>
+';
+    } else $avmenu = '
+<!--<a href="/register">Регистрация</a>-->
+<hr>
+<a href="/login"><b>Вход</b></a>';
 
 echo '<!DOCTYPE html>
 <html>
@@ -128,7 +162,6 @@ echo '<!DOCTYPE html>
 <div class="wrapper">
 
 <div class="menu">
-<a href="/">Главная</a>
 '.$avmenu.'
 
 </div>

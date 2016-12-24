@@ -1,12 +1,15 @@
 //* {margin: 0; padding: 0}
 @import "menu";
 @import "svg";
+@import "reserv";
 a {text-decoration: none}
 
 p {
   margin: 15px 0;
 }
-
+* {
+  box-sizing: border-box;
+}
 body,
 button,
 input,
@@ -22,11 +25,13 @@ h1 {
   font-size: 20px;
 
 }
-button, input[type="reset"] {
+button,
+input[type="reset"],
+.btn {
   background: #333333;
   color: #fff;
-  border: 1px solid #333333;
-  padding: 6px 12px;
+  border: 3px solid #333333;
+  padding: 3px 9px;
   margin: 8px 4px;
   border-radius: 0;
   width: auto;
@@ -34,12 +39,41 @@ button, input[type="reset"] {
     cursor:pointer;
     opacity: 0.8;
   }
+  &.active {
+    border: 3px solid #333;
+    background: #fff;
+    color: #333;
+  }
+}
+.big_btn {
+  text-align: center;
+  padding: 50px;
+  .btn {
+    padding: 40px;
+    font-size: 40px;
+    clear: both;
+    margin: 15px;
+    line-height: 4.5em;
+    width: 330px;
+    display: inline-block;
+  }
 }
 .center {
   text-align: center;
 }
 .fleft {
   float: left;
+  input {
+    width: 160px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 8px;
+
+  }
+}
+.btn-group {
+  height: 44px;
+  padding-top: 6px;
 }
 .fright {
   float: right;
@@ -47,25 +81,31 @@ button, input[type="reset"] {
 .head_loc {
   width: 110px;
   float: left;
+  padding-top: 14px;
 }
 .rowflex {
   clear: both;
 }
 input[type=text],
 input,
-input[type=password],
-textarea {
-  padding: 8px;
+input[type=password]{
+  padding: 4px 8px;
   border: 1px solid #888888;
-  border-radius: 8px;
+  //border-radius: 8px;
   color: #444444;
   width: 100%;
-  //width: 300px;
+  max-width: 320px;
   outline: none;
 
 }
 textarea {
-  height: 100px;
+  padding: 4px 8px;
+  border: 1px solid #888888;
+  color: #444444;
+  height: 80px;
+  margin: 1px 8px;
+  width: 98%;
+  outline: none;
 }
 html, body {
   margin: 0;
@@ -78,6 +118,8 @@ html, body {
 .wrapper {
   display: flex;
   min-height: 100%;
+  min-width: 1024px;
+  max-width: 1280px;
 }
 .content {
   flex: 1;
@@ -90,12 +132,6 @@ html, body {
   background: #fff;
   //border: 1px solid #EEEFF2;
 }
-#spis_rez {
-  margin: 8px;
-  padding: 8px;
-  border: 1px solid #888888;
-  height: 200px;
-}
 .rowflex {
   display: flex;
 }
@@ -104,6 +140,12 @@ html, body {
   padding: 0;
   button {
     width: 45%;
+  }
+  label {
+    margin-left: 8px;
+    font-size: 12px;
+    color: #333333;
+
   }
 }
 .w30 {

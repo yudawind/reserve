@@ -1,5 +1,51 @@
+<?
+$_SESSION['loader'] = 0;
+
+$data = array_shift($URL_Parts);
+if (!$data) $data = date('Y-m-d');
+
+$rezsql = "SELECT * FROM `reserve` WHERE `zal` = 'shooters' AND `data` = '" . $data . "' ORDER BY `time`";
+
+$res = mysqli_query($CONNECT, $rezsql);
+$tx = 53;
+$ty = 142;
+while ($row = mysqli_fetch_assoc($res)) {
+    if ($row['stol'] == 31) {
+        $row['time'] = substr($row['time'], 0, 5);
+        if ($row['data'] < date('Y-m-d')) $trstyle = 'old';
+        elseif ($row['data'] == date('Y-m-d')) $trstyle = 'norm';
+        else $trstyle = 'new';
+        $ty += 6;
+        $scgtext .= '<text id="ts21" x="' . $tx . '" y="' . $ty . '" class="' . $trstyle . ' s' . $row['cond'] . '">';
+        $scgtext .= '<tspan class="name">' . $row['name'] . ' </tspan>';
+        $scgtext .= '<tspan>' . $row['time'] . '</tspan>';
+        $scgtext .= '</text>';
+    }
+}
+
+
+top('Терасса') ?>
+
+    <!--    <span>Залы: </span>-->
+    <div class="fleft">
+        <script>
+            $(document).ready(function () {
+            });
+        </script>
+        <label for="data"></label>
+        <input value="<? echo $data ?>" type="date" id="data" name="data"/>
+    </div>
+    <div class="fright">
+        <a class="btn" href="disko">Шутерс</a>
+        <a class="btn" href="bar22">Бар 22</a>
+        <a class="btn" href="karaoke">Лимончелло</a>
+        <a class="btn active" href="terassa">Терасса</a>
+    </div>
+
+    <div id="space">
+
 <div class="plan">
-    <svg version="1.1" id="sloy_4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    <svg version="1.1" id="terassa" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
          viewBox="0 0 595.3 429" style="enable-background:new 0 0 595.3 429;" xml:space="preserve">
         <polygon class="st1" points="463,46 463,46 85.5,46 67.5,46 67.5,62.4 67.5,228.9 67.5,245.9 67.5,382.9 67.5,399.4 85.5,399.4
 	535,399.4 550.5,399.4 550.5,382.9 550.5,211 535,210.4 535,210.4 266.5,210.4 266.5,225.9 535,225.9 535,382.9 85.5,382.9
@@ -29,23 +75,24 @@
         <rect x="143.1" y="78.8" class="st0" width="44.5" height="128.5"></rect>
         <rect x="462.8" y="155.3" class="st1" width="15.2" height="66.2"></rect>
         <text transform="matrix(-2.407977e-002 -0.8229 0.9998 -1.982000e-002 175.0281 165.0049)" class="tx1">БАР</text>
-        <text transform="matrix(1 0 0 1 151.1297 265.0552)" class="tx1">72</text>
-        <text transform="matrix(1 0 0 1 194.7551 265.0552)" class="tx1">73</text>
-        <text transform="matrix(1 0 0 1 103.6249 337.5137)" class="tx1">70</text>
-        <text transform="matrix(1 0 0 1 286.0016 75.4843)" class="tx1">31</text>
-        <text transform="matrix(1 0 0 1 290.1265 246.7629)" class="tx1">62</text>
-        <text transform="matrix(1 0 0 1 105.2499 265.0552)" class="tx1">71</text>
-        <text transform="matrix(1 0 0 1 356.6277 246.7631)" class="tx1">63</text>
-        <text transform="matrix(1 0 0 1 422.7529 246.7628)" class="tx1">64</text>
-        <text transform="matrix(1 0 0 1 489.749 246.7629)" class="tx1">65</text>
-        <text transform="matrix(1 0 0 1 462.7534 337.7628)" class="tx1">66</text>
-        <text transform="matrix(1 0 0 1 371.7526 337.763)" class="tx1">67</text>
-        <text transform="matrix(1 0 0 1 283.2538 337.7631)" class="tx1">68</text>
-        <text transform="matrix(1 0 0 1 189.7543 337.7635)" class="tx1">69</text>
-        <text transform="matrix(1 0 0 1 351.0021 74.4843)" class="tx1">32</text>
-        <text transform="matrix(1 0 0 1 415.5027 75.4843)" class="tx1">33</text>
-        <text transform="matrix(1 0 0 1 415.5028 168.9859)" class="tx1">34</text>
-        <text transform="matrix(1 0 0 1 352.0021 167.4857)" class="tx1">35</text>
-        <text transform="matrix(1 0 0 1 286.5013 167.4857)" class="tx1">36</text>
+        <text transform="matrix(1 0 0 1 151 265)" class="tx1">72</text>
+        <text transform="matrix(1 0 0 1 194 265)" class="tx1">73</text>
+        <text transform="matrix(1 0 0 1 103 337)" class="tx1">70</text>
+        <text transform="matrix(1 0 0 1 286 75)" class="tx1">31</text>
+        <text transform="matrix(1 0 0 1 290 246)" class="tx1">62</text>
+        <text transform="matrix(1 0 0 1 105 265)" class="tx1">71</text>
+        <text transform="matrix(1 0 0 1 356 246)" class="tx1">63</text>
+        <text transform="matrix(1 0 0 1 422 246)" class="tx1">64</text>
+        <text transform="matrix(1 0 0 1 489 246)" class="tx1">65</text>
+        <text transform="matrix(1 0 0 1 462 337)" class="tx1">66</text>
+        <text transform="matrix(1 0 0 1 371 337)" class="tx1">67</text>
+        <text transform="matrix(1 0 0 1 283 337)" class="tx1">68</text>
+        <text transform="matrix(1 0 0 1 189 337)" class="tx1">69</text>
+        <text transform="matrix(1 0 0 1 351 74)" class="tx1">32</text>
+        <text transform="matrix(1 0 0 1 415 75)" class="tx1">33</text>
+        <text transform="matrix(1 0 0 1 415 168)" class="tx1">34</text>
+        <text transform="matrix(1 0 0 1 352 167)" class="tx1">35</text>
+        <text transform="matrix(1 0 0 1 286 167)" class="tx1">36</text>
 </svg>
 </div>
+<? bottom() ?>

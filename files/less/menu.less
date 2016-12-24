@@ -3,11 +3,39 @@
   width: 200px;
   background: #292929;
   padding-top: 10px;
-}
-
-.menu a {
-  display:
-          block; color: #fff;
-  padding: 10px 25px;
-  text-transform: uppercase;
+  a {
+    display:
+            block; color: #fff;
+    padding: 10px 25px;
+    text-transform: uppercase;
+  }
+  .left {
+    padding: 8px;
+  }
+  .btn {
+    background: white;
+    color: #292929;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 5px 0;
+    font-weight: bold;
+  }
+  .inf {
+    padding-top: 16px;
+    span {
+      background: white;
+      padding: 8px;
+      display: inline-block;
+      width: 100%;
+      &.yellow {
+        background: rgb(255, 224, 27);
+      }
+      &.red {
+        background: rgb(255, 72, 54);
+      }
+      &.green {
+        background: rgb(99, 255, 44);
+      }
+    }
+  }
 }
