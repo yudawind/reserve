@@ -15,6 +15,7 @@ button,
 input,
 input[type=text],
 input[type=password],
+select,
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
@@ -35,6 +36,7 @@ input[type="reset"],
   margin: 8px 4px;
   border-radius: 0;
   width: auto;
+
   &:hover {
     cursor:pointer;
     opacity: 0.8;
@@ -65,7 +67,7 @@ input[type="reset"],
   float: left;
   input {
     width: 160px;
-    margin-right: 10px;
+    margin-right: 1px;
     margin-bottom: 10px;
     margin-left: 8px;
 
@@ -73,7 +75,7 @@ input[type="reset"],
 }
 .btn-group {
   height: 44px;
-  padding-top: 6px;
+  padding-top: 14px;
 }
 .fright {
   float: right;
@@ -88,6 +90,7 @@ input[type="reset"],
 }
 input[type=text],
 input,
+select,
 input[type=password]{
   padding: 4px 8px;
   border: 1px solid #888888;
@@ -102,8 +105,8 @@ textarea {
   padding: 4px 8px;
   border: 1px solid #888888;
   color: #444444;
-  height: 80px;
-  margin: 1px 8px;
+  height: 85px;
+  margin: 1px 8px 4px;
   width: 98%;
   outline: none;
 }
@@ -141,12 +144,20 @@ html, body {
   button {
     width: 45%;
   }
+  .des,
   label {
     margin-left: 8px;
-    font-size: 12px;
-    color: #333333;
-
   }
+
+}
+.des {
+
+}
+.des,
+label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #333333;
 }
 .w30 {
   max-width: 30%;

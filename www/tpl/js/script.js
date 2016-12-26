@@ -1,42 +1,67 @@
 // zal='zal';
 // stol='stol';
 
-function load_reserv(zal,stol) {
-
-    $.get('/reserv/'+zal+'/'+stol, function (data) {
-        console.log('/reserv/'+zal+'/'+stol);
+function load_reserv(zal,stol, data) {
+    $.get('/reserv/'+zal+'/'+stol+'/'+data, function (data) {
+        // console.log('/reserv/'+zal+'/'+stol+'/'+data);
         if (data == 'empty')
-            $('#space').text('История пуста');
+            $('#space').text('Резервов нет');
         else if (data != 'end')
             $('#space').html(data);
     });
-    // $('#space').html(result);
 }
-function load_zal(zal, date) {
-    if (date) {
-        $.get('/'+zal+'/'+date, function (data) {
-            // console.log(data);
-            if (data == 'empty')
+function change_reserv() {
+    iden = $('#id').val();
+    console.log(iden);
+    $.get('/cangereserv/'+iden, function (data) {
+        console.log('/cangereserv/'+iden);
+        if (data == 'empty')
+            $('#space').text('Такого резерва нет');
+        else if (data != 'end')
+            $('#space').html(data);
+    });
+}
+function load_zal(zal, stol) {
+    if (stol) {
+        $.get('/'+zal+'/'+stol, function (stol) {
+            if (stol == 'empty')
                 $('#space').text('Такого зала нет');
-            else if (data != 'end')
-                $('#space').html(data);
+            else if (stol != 'end')
+                $('#space').html(stol);
         });
     } else {
-        $.get('/'+zal, function (data) {
-            // console.log(data);
-            if (data == 'empty')
+        $.get('/'+zal, function (stol) {
+            if (stol == 'empty')
                 $('#space').text('Такого зала нет');
-            else if (data != 'end')
-                $('#space').html(data);
+            else if (stol != 'end')
+                $('#space').html(stol);
         });
     }
-
-    // $('#space').html(result);
+}
+function go(url) {
+    window.location.href = '/' + url;
+}
+function del_zak(id) {
+    var str = '';
+    $.each(id.split('.'), function (k, v) {
+        str += '&' + v + '=' + $('#' + v).val();
+    });
+    $.ajax(
+        {
+            url: '/del',
+            type: 'POST',
+            data: 'del_f=1' + str,
+            cache: false,
+            success: function (result) {
+                console.log(result);
+                obj = jQuery.parseJSON(result);
+                location.reload()
+            }
+        }
+    );
 }
 function post_query(url, name, data) {
-
     var str = '';
-
     $.each(data.split('.'), function (k, v) {
         str += '&' + v + '=' + $('#' + v).val();
     });
@@ -50,119 +75,26 @@ function post_query(url, name, data) {
             success: function (result) {
                 console.log(result);
                 obj = jQuery.parseJSON(result);
-
                 if (obj.go) go(obj.go);
                 else alert(obj.message);
-
-
             }
         }
     );
-}function post_add(url, name, data) {
-
-    var str = '';
-
-    $.each(data.split('.'), function (k, v) {
-        str += '&' + v + '=' + $('#' + v).val();
-    });
-    console.log(str);
-    $.ajax(
-        {
-            url: '/' + url,
-            type: 'POST',
-            data: name + '_f=1' + str,
-            cache: false,
-            success: function (result) {
-                console.log('добавлен');
-                $('#'+name).html(result);
-            }
-        }
-    );
-}
-function post_order(url, name, data) {
-
-    var str = '';
-
-    console.log(data);
-
-    $.each(data.split('.'), function (k, v) {
-        str += '&' + v + '=' + $('#' + v).val();
-    });
-    console.log(str);
-    $.ajax(
-        {
-            url: '/' + url,
-            type: 'POST',
-            data: name + '_f=1' + str,
-            cache: false,
-            success: function (result) {
-                console.log('сортировка по'+data);
-                $('#'+name).html(result);
-
-
-            }
-        }
-    );
-}
-function post_stable(url, name, data) {
-
-    var str = '';
-
-    $.each(data.split('.'), function (k, v) {
-        str += '&' + v + '=' + $('#' + v).val();
-    });
-    // console.log(str);
-    $.ajax(
-        {
-            url: '/' + url,
-            type: 'POST',
-            data: name + '_f=1' + str,
-            cache: false,
-            success: function (result) {
-                obj = jQuery.parseJSON(result);
-                console.log(obj);
-                console.log(obj[1]['id']);
-
-                var items = [];
-                for (i=0;i<obj.length;i++) { // формируем результаты
-                    val = obj[i];
-                    console.log(val);
-                    val['speed'] = (val['speed']/10).toFixed(1);
-                    val['accel'] = (val['accel']/10).toFixed(1);
-                    val['turn'] = (val['turn']/10).toFixed(1);
-                    val['brake'] = (val['brake']/10).toFixed(1);
-                    genstrok = '<div class="odlosh"><a href="/edithorse/'+val['id']+'">'+
-                        "<span class='img'><img src='/tpl/img/"+val['breed']+".png'> </span>"+
-                        "<span class='sex'><img width='14' src='/tpl/img/sex0"+val['sex']+".png'></span>"+
-                        "<p class='center'><b>&laquo;"+val['horsname']+"&raquo;</b><br>"+
-                        "<span class='fleft'>#<span >"+val['id']+"</span></span>"+
-                        "<span class='fright'>порода "+val['breed']+"</span></p>"+
-                        "<div class='param'><table><tr><td>здоровье<br>"+val['health']+
-                        "</td><td>энергия<br>"+val['power']+
-                        "</td></tr><tr><td>скорость<br>"+val['speed']+
-                        "</td><td>поворот<br>"+val['turn']+
-                        "</td></tr><tr><td>ускорение<br>"+val['accel']+
-                        "</td><td>торможение<br>"+val['brake']+
-                        "</td></tr></table></div>"+'</a></div>';
-                    items.push(genstrok);
-                }
-                spisok = $('<div />', {'id': 'moikoni', html: items.join('')});
-                $('#'+name).html(spisok); // вставляем на страницу
-                // $('#'+name).html(result);
-            }
-        }
-    );
-}
-function go(url) {
-    window.location.href = '/' + url;
 }
 function pokras () {
     for (k=1;k<74;k++) {
         c=$('#ts'+k);
-        console.log(c);
         if (c) {
             b=c.attr('class');
             $('#rz'+k).addClass(b);
+        }
+    }
+    u=$('#hide p');
+    for (b=0;b<u.length;b++) {
+        if (u[b]) {
+            $('#rz'+u[b].id).addClass('zanyat');
+            // console.log(u[b].id);
+            // console.log($('#rz'+u[b].id).attr('class'));
         }
     }
 }
@@ -176,16 +108,6 @@ function godate() {
 }
 
 $(document).ready(function() {
-
-    // $('#data').change(function(event) {
-    //     date = $('#data').val();
-    //     if ($('#disko')) load_zal('disko',date);
-    //     else if ($('#bar22')) load_zal('bar22',date);
-    //     else if ($('#karaoke')) load_zal('karaoke',date);
-    //     else load_zal('terassa',date);
-    //     pokras ();
-    // });
-
     $('#data').change(function(event) {
         date = $('#data').val();
         if ($('#disko')) pzal='disko/'+date;
@@ -199,8 +121,36 @@ $(document).ready(function() {
                 }
             }
         );
-        // go(pzal);
-        // pokras ();
+    });
+    $(document).on('mouseup',function (e) {
+        // console.log(e.target.tagName);
+        tdTag = $('tr');
+        // console.log(tdTag[0]);
+        for (i=0;i<tdTag.length;i++){
+            tdTag[i].classList.remove('active');
+        }
+        if (e.target.tagName=='TD') {
+            g = e.target.parentNode;
+            k = g.id;
+            // console.log(k);
+            g.classList.add('active');
+            cn = g.childNodes;
+            cnid = cn[1].innerHTML;
+            cnmail = cn[2].innerHTML;
+            console.log(cn[0].innerHTML);
+            console.log('id '+cn[1].innerHTML);
+            console.log('mail '+cn[2].innerHTML);
+            console.log('name '+cn[3].innerHTML);
+            console.log('data '+cn[4].innerHTML);
+            console.log('time '+cn[5].innerHTML);
+            console.log('depozit '+cn[6].innerHTML);
+            console.log('tel '+cn[7].innerHTML);
+            console.log('text '+cn[8].innerHTML);
+            console.log(cnid);
+            console.log($('#id'));
+            $('#id').val(cnid);
+            console.log($('#id').val());
+        }
     });
 
     $(document).keypress(function(event) {

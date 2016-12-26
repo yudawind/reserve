@@ -23,7 +23,7 @@ top('Столики') ?>
         <?
         $data = array_shift($URL_Parts);
         if (!$data) $data = date('Y-m-d');
-        $rezsql = "SELECT * FROM `reserve` WHERE `zal` = 'shooters' AND `data` = '".$data."' ORDER BY `time`";
+        $rezsql = "SELECT * FROM `reserve` WHERE `zal` = 'disko' AND `data` = '".$data."' ORDER BY `time`";
 
         $res = mysqli_query($CONNECT, $rezsql);
         $tx = 53;$ty = 142;
